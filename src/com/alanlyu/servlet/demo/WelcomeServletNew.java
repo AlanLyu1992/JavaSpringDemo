@@ -37,7 +37,7 @@ public class WelcomeServletNew extends HttpServlet {
 		WelcomeService welcomeService = new WelcomeService();
 		List<String> welcomeMessage = welcomeService.getWelcomeMessage("Alan");
 		request.setAttribute("myWelcomeMessage", welcomeMessage);
-		
+		 
 		
 		//2. Retrieve request dispatcher
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcomeNew.jsp");

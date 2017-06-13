@@ -1,6 +1,7 @@
 package com.alanlyu.servlet.demo;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alanlyu.service.demo.WelcomeService;
 
 /**
  * Servlet implementation class WelcomeServlet
@@ -28,12 +31,16 @@ public class WelcomeServletNew extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. create the data and then add it to the request object
-		String[] welcomeMessage = {"Hello!","Welcome to Master Alan's Area!"};
+		//1.Create the data and add to request object
+		// Invoking business layer
+		
+		WelcomeService welcomeService = new WelcomeService();
+		List<String> welcomeMessage = welcomeService.getWelcomeMessage("Alan");
 		request.setAttribute("myWelcomeMessage", welcomeMessage);
 		
+		
 		//2. Retrieve request dispatcher
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcomeNew.jsp");
 		
 		//3.forward request to the view
 		requestDispatcher.forward(request, response);
